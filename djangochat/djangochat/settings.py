@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'channels',
+    'rooms',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = "/"
 
-#LOGIN_REDIRECT_URL = "/rooms/"
+LOGIN_REDIRECT_URL = "/rooms"
 
 #LOGIN_URL='/login/'
