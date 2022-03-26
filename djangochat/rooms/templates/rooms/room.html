@@ -44,17 +44,28 @@
         </form>
     </div>
 
+
+    
+{% endblock content %}
+
+{% block scripts %}
+
+    {{ room.slug|json_script:"json-roomName"}}
+
     <script type="text/javascript">
-        let url = `ws://${window.location.host}/ws/socket-server`
+        const roomName = JSON.parse(document.getElementById("json-roomName").textContent)
+        let url = `ws://${window.location.host}/ws/${roomName}/`
 
         const ChatSocket = new WebSocket(url)
 
         ChatSocket.onmessage = (e) => {
-            let data = JSON.parse(e.data)
-            console.log('Data:', data)
+            // let data = JSON.parse(e.data)
+            // console.log('Data:', data)
+            console.log("connected");
+        }
+
+        ChatSocket.onclose = (e) => {
+            console.log("Disconnected");
         }
     </script>
-
-
-    
-{% endblock content %}
+{% endblock %}

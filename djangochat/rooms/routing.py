@@ -1,6 +1,6 @@
-from django.urls import URLPattern, re_path
+from django.urls import URLPattern, path
 from .consumers import RoomConsumer
 
 websocket_urlpatterns = [
-    re_path('ws/socket-server', RoomConsumer.as_asgi())
+    path('ws/<str:room_name>/', RoomConsumer.as_asgi()),
 ]
