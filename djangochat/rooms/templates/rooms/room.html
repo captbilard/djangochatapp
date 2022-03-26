@@ -50,7 +50,7 @@
         const ChatSocket = new WebSocket(url)
 
         ChatSocket.onmessage = (e) => {
-            let data = JSON.parse(e)
+            let data = JSON.parse(e.data)
             console.log('Data:', data)
         }
     </script>
