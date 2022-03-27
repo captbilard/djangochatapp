@@ -53,8 +53,7 @@
 
         ChatSocket.onmessage = (e) => {
             let data = JSON.parse(e.data)
-            // console.log('Data:', data)
-            //console.log("connected");
+
             if(data.message){
                 let html = `<div class="p-4 bg-purple-300 rounded-xl">
                                 <p class="font-semibold">
@@ -63,6 +62,7 @@
                                 <p>${data.message}</p>
                             </div>`
                 document.querySelector('#chat-messages').innerHTML += html
+                scrollToBottom()
             }else{
                 alert("The message is empty!")
             }
@@ -90,6 +90,14 @@
 
             return false
         }
+
+        //Scroll to the bottom of the chat messages
+        const scrollToBottom = () =>{
+            let chatMessagesDom = document.querySelector('#chat-messages')
+            chatMessagesDom.scrollTop = chatMessagesDom.scrollHeight
+        }
+        //Fire on load
+        scrollToBottom()
 
     </script>
 {% endblock %}
