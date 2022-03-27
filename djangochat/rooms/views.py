@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 
-from .models import Rooms
+from .models import Rooms, Message
 
 # Create your views here.
 @login_required()
@@ -14,6 +14,9 @@ def rooms(request):
 @login_required()
 def room (request, room_slug):
     room  = Rooms.objects.get(slug=room_slug)
-    context  = {'room': room}
+    messages = Message.objects.filter(room=room)[0:25]
+    context  = {'room': room, 'messages':messages}
     return render(request, "rooms/room.html", context)
+
+
  
